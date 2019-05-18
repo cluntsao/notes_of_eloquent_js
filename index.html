@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>TEST</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <script src="main.js"></script> -->
+</head>
+<body>
+    The text is displayed <strong>inline</strong>,
+    <strong style="display: block">as a block</strong>, and
+    <strong style="display: none">Not at all</strong>
+
+    <p style="text-align: center">
+        <img src="images/cat.png" alt="cat" style="position: relative" width="150px">
+    </p>
+
+    <button>Click Me</button>
+
+    <span style="display: block">This is a container! <button>Button in Span</button> What's up!</span>
+
+    <a href="https://developer.mozilla.org/" target="_blank">MDN</a>
+
+    <p>This page turns violet when you hold the V key!</p>
+
+    <script>
+        let strongs = document.getElementsByTagName('strong');
+        for (let s of Array.from(strongs)) {
+            s.style.color = "#ff00ff";
+        }
+
+        let cat = document.querySelector("img");
+        let angle = Math.PI / 2;
+        function animate(time, lastTime) {
+            if (lastTime != null) {
+                angle += (time - lastTime) * 0.001;
+            }
+            cat.style.top = (Math.sin(angle) * 20) + "px";
+            cat.style.left = (Math.cos(angle) * 200) + "px";
+            requestAnimationFrame(newTime => animate(newTime, time));
+        }
+
+        requestAnimationFrame(animate);
+
+        document.querySelector("button").addEventListener("mousedown", event => {
+            switch (event.button) {
+                case 0:
+                    console.log("Left Button");
+                    break;
+                case 1:
+                    console.log("Middle Button");
+                    break;
+                case 2:
+                    console.log("Right Button");
+                    break;
+                default:
+                    console.log("No ideas...");
+                    break;
+            }
+        })
+        
+        document.querySelector("span").addEventListener('click', () => {
+            console.log("You just clicked SPAN!")
+        })
+
+        document.querySelector("span button").addEventListener('click', () => {
+            console.log("Button in SPAN!");
+        })
+        
+        document.querySelector("a").addEventListener("click", event => {
+            console.log("You just clicked a link!");
+            event.preventDefault();
+        })
+
+        window.addEventListener("keydown", event => {
+            if (event.key == 'v') document.body.style.background = "violet";
+        })
+
+        window.addEventListener("keyup", event => {
+            if (event.key == 'v') document.body.style.background = "";
+        })
+
+        window.addEventListener('keydown', event => {
+            if (event.key == " " && event.ctrlKey){
+                console.log("Let's Go!!!!!")
+            }
+        })
+    </script>
+</body>
+</html>
